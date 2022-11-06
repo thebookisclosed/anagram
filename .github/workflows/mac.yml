@@ -40,7 +40,7 @@ jobs:
 
   macos:
     name: MacOS
-    runs-on: macos-12
+    runs-on: macos-latest
 
     strategy:
       matrix:
@@ -95,6 +95,7 @@ jobs:
         run: |
           cd Libraries
           find . -iname "*.dir" -exec rm -rf {} || true \;
+          find . -iname "*.a" -exec strip -S {} || true \;
 
       - name: Telegram Desktop build.
         if: env.ONLY_CACHE == 'false'
